@@ -1,5 +1,5 @@
 {
-  "name": "stacks-analytics-tracker-sdk",
+  "name": "@talentideas/stacks-analytics-tracker-sdk",
   "version": "0.1.0",
   "description": "TypeScript SDK for the analytics-tracker Clarity contract on Stacks.",
   "keywords": [
@@ -10,6 +10,9 @@
     "stacksjs"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -24,12 +27,14 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck && npm run build"
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "release:check": "npm run typecheck && npm run build && npm pack"
   },
   "dependencies": {
     "@stacks/transactions": "^7.2.0"
