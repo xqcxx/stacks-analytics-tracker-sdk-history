@@ -1,3 +1,5 @@
+import { Cl, type ClarityValue } from "@stacks/transactions";
+
 export const CONTRACT_NAME = "analytics-tracker";
 
 export type ContractIdentifier = {
@@ -30,4 +32,16 @@ export type TrackCustomEventArgs = {
 
 export function getContractId(contract: ContractIdentifier): string {
   return `${contract.contractAddress}.${contract.contractName ?? CONTRACT_NAME}`;
+}
+
+export function buildTrackPageViewArgs(args: TrackPageViewArgs): ClarityValue[] {
+  return [Cl.stringAscii(args.projectId), Cl.stringUtf8(args.page)];
+}
+
+export function buildTrackActionArgs(args: TrackActionArgs): ClarityValue[] {
+  return [
+    Cl.stringAscii(args.projectId),
+    Cl.stringAscii(args.action),
+    Cl.stringUtf8(args.target),
+  ];
 }
