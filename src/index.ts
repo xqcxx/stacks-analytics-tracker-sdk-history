@@ -16,6 +16,18 @@ export type TrackActionArgs = {
   target: string;
 };
 
+export type TrackConversionArgs = {
+  projectId: string;
+  conversionType: string;
+  value: bigint | number;
+};
+
+export type TrackCustomEventArgs = {
+  projectId: string;
+  eventType: string;
+  payload: string;
+};
+
 export function getContractId(contract: ContractIdentifier): string {
   return `${contract.contractAddress}.${contract.contractName ?? CONTRACT_NAME}`;
 }
