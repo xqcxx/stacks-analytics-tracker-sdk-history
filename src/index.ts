@@ -1,4 +1,11 @@
-import { Cl, type ClarityValue } from "@stacks/transactions";
+import {
+  Cl,
+  cvToValue,
+  fetchCallReadOnlyFunction,
+  type ClarityValue,
+} from "@stacks/transactions";
+
+export type StacksNetwork = "mainnet" | "testnet" | "devnet";
 
 export const CONTRACT_NAME = "analytics-tracker";
 
@@ -28,6 +35,12 @@ export type TrackCustomEventArgs = {
   projectId: string;
   eventType: string;
   payload: string;
+};
+
+export type ContractInfo = {
+  contract: string;
+  version: string;
+  stateless: boolean;
 };
 
 export function getContractId(contract: ContractIdentifier): string {
@@ -62,4 +75,21 @@ export function buildTrackCustomEventArgs(args: TrackCustomEventArgs): ClarityVa
     Cl.stringAscii(args.eventType),
     Cl.stringUtf8(args.payload),
   ];
+}
+
+export async function fetchContractInfo(
+  contract: ContractIdentifier,
+  network: StacksNetwork,
+  senderAddress: string
+): Promise<ContractInfo> {
+  const response = await fetchCallReadOnlyFunction({
+    contractAddress: contract.contractAddress,
+    contractName: contract.contractName ?? CONTRACT_NAME,
+    functionName: "get-contract-info",
+    functionArgs: [],
+    network,
+    senderAddress,
+  });
+
+  return cvToValue(response) as ContractInfo;
 }
