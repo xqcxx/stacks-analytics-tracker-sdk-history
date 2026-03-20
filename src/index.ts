@@ -45,3 +45,21 @@ export function buildTrackActionArgs(args: TrackActionArgs): ClarityValue[] {
     Cl.stringUtf8(args.target),
   ];
 }
+
+export function buildTrackConversionArgs(args: TrackConversionArgs): ClarityValue[] {
+  const numericValue =
+    typeof args.value === "bigint" ? args.value : BigInt(Math.trunc(args.value));
+  return [
+    Cl.stringAscii(args.projectId),
+    Cl.stringAscii(args.conversionType),
+    Cl.uint(numericValue),
+  ];
+}
+
+export function buildTrackCustomEventArgs(args: TrackCustomEventArgs): ClarityValue[] {
+  return [
+    Cl.stringAscii(args.projectId),
+    Cl.stringAscii(args.eventType),
+    Cl.stringUtf8(args.payload),
+  ];
+}
