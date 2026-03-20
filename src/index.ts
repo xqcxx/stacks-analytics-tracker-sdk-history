@@ -5,7 +5,7 @@ import {
   type ClarityValue,
 } from "@stacks/transactions";
 
-export type StacksNetwork = "mainnet" | "testnet" | "devnet";
+export type StacksNetwork = "mainnet" | "testnet" | "devnet" | "mocknet";
 
 export const CONTRACT_NAME = "analytics-tracker";
 
