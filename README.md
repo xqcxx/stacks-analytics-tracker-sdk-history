@@ -1,11 +1,11 @@
-# @talentideas/stacks-analytics-tracker-sdk
+# xqcxx-stacks-analytics-tracker-sdk
 
 TypeScript SDK for interacting with the `analytics-tracker` Clarity contract.
 
 ## Install
 
 ```bash
-npm install @talentideas/stacks-analytics-tracker-sdk @stacks/transactions
+npm install xqcxx-stacks-analytics-tracker-sdk @stacks/transactions
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ import {
   getContractId,
   buildTrackPageViewArgs,
   fetchContractInfo,
-} from "@talentideas/stacks-analytics-tracker-sdk";
+} from "xqcxx-stacks-analytics-tracker-sdk";
 
 const contract = {
   contractAddress: "ST000000000000000000002AMW42H",
